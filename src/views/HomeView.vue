@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import TheWelcome from "@/components/TheWelcome.vue";
+import { ref } from "vue";
+import TheSearch from "../components/TheSearch.vue";
+
+const searchText = ref("");
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <TheSearch v-model="searchText" />
   </main>
 </template>
