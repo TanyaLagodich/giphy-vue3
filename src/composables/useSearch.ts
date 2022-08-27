@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { searchTags } from "@/api";
 
-const useSearch = () => {
+const useAutocomplete = () => {
   const tags = ref([]);
 
   const fetch = async (searchText: string) => {
@@ -15,4 +15,4 @@ const useSearch = () => {
   };
 };
 
-export default useSearch;
+export default useAutocomplete;

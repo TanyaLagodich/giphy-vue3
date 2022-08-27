@@ -30,4 +30,16 @@ export async function searchTags(q: string) {
     .then((response) => response.data);
 }
 
+export async function searchGifs(q: string) {
+  return axiosInstance
+    .request({
+      method: "GET",
+      url: "gifs/search",
+      params: {
+        q,
+      },
+    })
+    .then((response) => response.data);
+}
+
 export default axiosInstance;
