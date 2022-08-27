@@ -6,11 +6,11 @@ import { RouterLink, RouterView } from "vue-router";
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">
+        <RouterLink to="/" class="no-hover">
           <img
             alt="Giphy logo"
             class="logo"
-            src="@/assets/logo.svg"
+            src="@/assets/logo.png"
             width="125"
             height="125"
           />
@@ -44,7 +44,7 @@ nav {
   margin-top: 2rem;
 }
 
-/* nav a.router-link-exact-active {
+nav a.router-link-exact-active {
   color: var(--color-text);
 }
 
@@ -52,7 +52,7 @@ nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
+/*nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
@@ -67,13 +67,18 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
+  } */
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.logo {
+  margin: 0 2rem 0 0;
+  object-fit: contain;
+}
 
-  header .wrapper {
+.logo {
+  background-color: inherit;
+}
+
+/* header .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;

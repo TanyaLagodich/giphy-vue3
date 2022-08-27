@@ -6,6 +6,7 @@ import useAutocomplete from "@/composables/useSearch";
 const inputOnBlur = ref(false);
 const searchText = ref("");
 const { tags, fetch: autocomplete } = useAutocomplete();
+const timer = ref(0);
 // TODO debounce on keyup https://theroadtoenterprise.com/blog/how-to-create-a-debounced-ref-in-vue-3-using-composition-api
 
 const placeholder = computed(() => "Search ALL the GIFs and Stickers");
@@ -13,6 +14,18 @@ const placeholder = computed(() => "Search ALL the GIFs and Stickers");
 const selectTag = ({ name }) => {
   searchText.value = name;
   inputOnBlur.value = false;
+};
+
+const selectLetterInTag = ({ name }) => {
+  const index = name.indexOf(searchText.value);
+  if (index === -1) {
+    return name;
+  }
+  const length = searchText.value.length;
+  return `<span class="autocomplete__item_bold">${name.slice(
+    index,
+    length
+  )}</span>${name.slice(length)}`;
 };
 
 defineProps<{
@@ -39,10 +52,14 @@ defineEmits<{
         <IconSearch />
       </button>
     </div>
-    <ul v-if="tags.length && inputOnBlur" class="autocomplete">
-      <li v-for="tag in tags" :key="tag" @mousedown="selectTag(tag)">
-        {{ tag.name }}
-      </li>
+    <ul v-if="tags.length && true" class="autocomplete">
+      <li
+        v-for="tag in tags"
+        :key="tag"
+        @mousedown="selectTag(tag)"
+        class="autocomplete__item"
+        v-html="selectLetterInTag(tag)"
+      />
     </ul>
   </div>
 </template>
@@ -87,19 +104,23 @@ button {
   z-index: 1;
 }
 
-.autocomplete li {
+.autocomplete__item {
   padding: 10px 17px;
   min-height: 52px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.autocomplete li:hover {
+.autocomplete__item >>> .autocomplete__item_bold {
+  font-weight: 600;
+}
+
+.autocomplete__item:hover {
   background-color: var(--vt-c-white-soft);
   color: var(--vt-c-black);
 }
 
-.autocomplete li:not(:last-child) {
+.autocomplete__item:not(:last-child) {
   border-bottom: 1px dashed black;
 }
 </style>

@@ -18,6 +18,6 @@ const searchText = ref("");
       v-model="searchText"
       @@search="(query) => searchGifsByQuery(query)"
     />
-    <TheGIFs :gifs="response.data" />
+    <TheGIFs v-if="response" :gifs="response.data" />
   </main>
 </template>
