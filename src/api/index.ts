@@ -1,3 +1,4 @@
+import { isMemberExpressionBrowser } from "@vue/compiler-core";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -18,6 +19,17 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+/* for tags */
+export async function searchHashtags(path: string) {
+  return axiosInstance
+    .request({
+      method: "GET",
+      url: `tags/related/${path}`,
+    })
+    .then((response) => response.data);
+}
+
+/* for autocomplete */
 export async function searchTags(q: string) {
   return axiosInstance
     .request({

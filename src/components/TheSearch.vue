@@ -30,6 +30,11 @@ const input = (event: Event) => {
   debounceAutocomplete();
 };
 
+const search = (event: Event) => {
+  emit("@search");
+  event.target.blur();
+};
+
 const selectTag = ({ name }) => {
   emit("update:modelValue", name);
   inputOnBlur.value = false;
@@ -58,7 +63,7 @@ const selectLetterInTag = ({ name }) => {
       @focus="inputOnBlur = true"
       @blur="inputOnBlur = false"
       @input="input"
-      @keyup.enter="emit('@search')"
+      @keyup.enter="search"
     />
     <ul v-if="tags.length && inputOnBlur" class="autocomplete__list">
       <li
