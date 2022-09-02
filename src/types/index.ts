@@ -6,4 +6,7 @@ export interface Gif {
     };
   };
   title: string;
+  user: {
+    avatar_url: string;
+  };
 }
