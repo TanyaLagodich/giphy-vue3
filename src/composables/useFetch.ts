@@ -1,6 +1,9 @@
 import { ref } from "vue";
 
-const useFetch = (apiMethod: any, config: { skip?: boolean } = {}) => {
+const useFetch = (
+  apiMethod: any,
+  config: { skip?: boolean; params?: any } = {}
+) => {
   const data: any = ref(null);
   const response = ref<any>(null);
   const error: any = ref(null);

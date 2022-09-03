@@ -10,6 +10,12 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/gifs/:id",
+      name: "show-gif",
+      component: () => import("@/views/GIFView.vue"),
+      props: true,
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting

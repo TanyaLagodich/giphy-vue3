@@ -8,11 +8,12 @@ import TheGIFs from "../components/TheGIFs.vue";
 import TheTabs from "../components/TheTabs.vue";
 import TheTags from "@/components/TheTags.vue";
 
+const searchText = ref("");
+
 const { response, fetch: searchGifsByQuery } = useFetch(searchGifs, {
+  params: searchText,
   skip: true,
 });
-
-const searchText = ref("");
 </script>
 
 <template>

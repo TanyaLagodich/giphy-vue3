@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    console.log({ config });
     if (!config.params) {
       config.params = {};
     }
@@ -50,6 +49,16 @@ export async function searchGifs(q: string) {
       params: {
         q,
       },
+    })
+    .then((response) => response.data);
+}
+
+/* for getting single gif by id */
+export async function getGifById(gif_id: string) {
+  return axiosInstance
+    .request({
+      method: "GET",
+      url: `gifs/${gif_id}`,
     })
     .then((response) => response.data);
 }

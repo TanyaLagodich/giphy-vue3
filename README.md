@@ -1,5 +1,12 @@
 # giphy
 
+What do need to do?
+* Single view page GIFs/Stickers
+* Searching GIFs and stickers. Let user to choose what to load
+* Upload user's GIFs
+* Let user to copy url
+* channels pages (optional)
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
