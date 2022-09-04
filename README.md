@@ -6,6 +6,7 @@ What do need to do?
 * Upload user's GIFs
 * Let user to copy url
 * channels pages (optional)
+* add fontawesome and replace icons
 
 This template should help get you started developing with Vue 3 in Vite.
 

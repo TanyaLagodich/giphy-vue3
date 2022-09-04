@@ -17,7 +17,9 @@ import { RouterLink, RouterView } from "vue-router";
         </RouterLink>
         <RouterLink to="/giphy">Giphy</RouterLink>
         <RouterLink to="/giphy">Emoji</RouterLink>
-        <button>Upload</button>
+        <RouterLink to="/upload" custom v-slot="{ navigate }">
+          <button class="upload" @click="navigate" role="link">Upload</button>
+        </RouterLink>
       </nav>
     </div>
   </header>
@@ -26,6 +28,20 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
+.upload {
+  padding: 8.5px 16px;
+  border-radius: 2px;
+  background: linear-gradient(
+    263.31deg,
+    rgb(153, 51, 255) -97.49%,
+    rgb(97, 87, 255) 94.14%
+  );
+  cursor: pointer;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-weight: 600;
+}
 /* header {
   line-height: 1.5;
   max-height: 100vh;

@@ -63,4 +63,19 @@ export async function getGifById(gif_id: string) {
     .then((response) => response.data);
 }
 
+/*  upload to GIPHY */
+export async function uploadToGiphy(data) {
+  return axiosInstance
+    .request({
+      method: "POST",
+      url: "upload",
+      baseURL: "https://upload.giphy.com/v1",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      data,
+    })
+    .then((response) => response.data);
+}
+
 export default axiosInstance;
