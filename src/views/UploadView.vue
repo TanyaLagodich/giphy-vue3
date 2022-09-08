@@ -13,7 +13,7 @@ const isLinkValid = computed(
 );
 </script>
 <template>
-  <div class="upload__wrapper" v-if="!getFileUrl">
+  <div class="upload__wrapper">
     <h1 class="upload__main-title">GIPHY Upload</h1>
     <p class="upload__main-description">
       Upload your collection to share on Facebook, Twitter, Instagram, text
@@ -25,7 +25,6 @@ const isLinkValid = computed(
     </div>
     <UploadUrl v-model="link" />
   </div>
-  <UploadFinalize v-else :url="link" />
 </template>
 <style scoped>
 .upload__wrapper {

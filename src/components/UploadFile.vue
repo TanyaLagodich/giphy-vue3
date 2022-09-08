@@ -2,23 +2,15 @@
 import { computed } from "vue";
 import IconGif from "./icons/IconGif.vue";
 import IconSticker from "./icons/IconSticker.vue";
+import { uploadTypes } from "@/types";
 import { useStore } from "@/store";
-
-enum uploadTypes {
-  GIF = "gif",
-  Sticker = "sticker",
-}
+import router from "@/router";
 
 const props = defineProps<{
   type: uploadTypes;
-  modelValue: string;
 }>();
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: string): void;
-}>();
-
-const { saveFileUrl, saveFile } = useStore();
+const { saveFile } = useStore();
 
 const description = computed(() =>
   props.type === uploadTypes.GIF
@@ -38,18 +30,10 @@ const getCurrentIcon = computed(() =>
   props.type === uploadTypes.GIF ? IconGif : IconSticker
 );
 
-const readFile = (event) => {
+const readFile = async (event) => {
   const file = event.target.files[0];
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onloadend = async () => {
-    const blobFile = await fetch(reader.result).then((r) => r.blob());
-    const link = URL.createObjectURL(blobFile);
-    saveFileUrl(link);
-    URL.revokeObjectURL(link);
-  };
-
-  saveFile(file);
+  await saveFile(file);
+  router.push({ name: "upload-finalize" });
 };
 </script>
 <template>

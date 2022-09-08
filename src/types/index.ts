@@ -10,3 +10,8 @@ export interface Gif {
     avatar_url: string;
   };
 }
+
+export enum uploadTypes {
+  GIF = "gif",
+  Sticker = "sticker",
+}

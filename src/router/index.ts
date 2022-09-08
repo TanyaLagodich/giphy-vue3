@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import("@/views/UploadView.vue"),
     },
     {
+      path: "/upload-finalize",
+      name: "upload-finalize",
+      component: () => import("@/views/UploadFinalizeView.vue"),
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting

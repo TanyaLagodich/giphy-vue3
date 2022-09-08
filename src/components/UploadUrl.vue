@@ -1,11 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  modelValue: string;
-}>();
+import { ref } from "vue";
+import { useStore } from "@/store";
 
-defineEmits<{
-  (e: "update:modelValue", value: string): void;
-}>();
+const { saveFileUrl } = useStore();
+
+const fileUrl = ref("");
 </script>
 <template>
   <div class="upload">
@@ -14,12 +13,13 @@ defineEmits<{
       We support media URLs from GIPHY, YouTube, Vimeo, & many others!
     </p>
     <input
-      :value="modelValue"
+      v-model="fileUrl"
       class="upload__url-input"
       type="text"
       placeholder="Enter any media or GIF URL"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="saveFileUrl(fileUrl)"
     />
+    <!-- TODO debounce and validation for fileUrl -->
   </div>
 </template>
 <style scoped>
