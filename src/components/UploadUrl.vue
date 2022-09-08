@@ -8,9 +8,9 @@ defineEmits<{
 }>();
 </script>
 <template>
-  <div class="upload__url">
-    <h2 class="upload__url-title">Any URL</h2>
-    <p class="upload__url-description">
+  <div class="upload">
+    <h2 class="upload__title">Any URL</h2>
+    <p class="upload__description">
       We support media URLs from GIPHY, YouTube, Vimeo, & many others!
     </p>
     <input
@@ -23,23 +23,6 @@ defineEmits<{
   </div>
 </template>
 <style scoped>
-.upload__url {
-  background: rgba(236, 236, 236, 0.1);
-  border-radius: 4px;
-  padding: 20px 40px 30px;
-  text-align: initial;
-}
-
-.upload__url-title {
-  margin-bottom: 10px;
-  font-size: 17px;
-  font-weight: 900;
-}
-
-.upload__url-description {
-  margin-bottom: 12px;
-}
-
 .upload__url-input {
   padding: 0 12px;
   background: rgb(255, 255, 255);

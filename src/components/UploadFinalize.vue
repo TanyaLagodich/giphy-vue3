@@ -3,11 +3,15 @@ import { ref } from "vue";
 import { uploadToGiphy } from "@/api";
 import { useRouter } from "vue-router";
 import TheTag from "./TheTag.vue";
+import axios from "axios";
+import { useStore } from "@/store";
 
 const router = useRouter();
 const props = defineProps<{
   url: string;
 }>();
+
+const { getFileUrl, getFile } = useStore();
 
 const tag = ref("");
 const tags = ref<string[]>([]);
@@ -21,12 +25,16 @@ const addTag = () => {
   tag.value = "";
 };
 
-const upload = () => {
+const upload = async () => {
   const data = {
     tags: tags.value.join(", "),
     source_image_url: props.url,
     source_post_url: props.url,
   };
+
+  if (getFile) {
+    data.file = new FormData(getFile);
+  }
 
   uploadToGiphy(data)
     .then(({ data }) =>
@@ -38,7 +46,7 @@ const upload = () => {
 <template>
   <div class="upload-finalize">
     <div class="upload-finalize__img">
-      <img :src="url" alt="loading image" />
+      <img :src="getFileUrl" alt="loading image" />
     </div>
     <div class="upload-finalize__info">
       <h2>Add Info</h2>
@@ -59,7 +67,7 @@ const upload = () => {
           :key="index"
           :tag="tag"
           :index="index"
-          @@close="(index) => tags.splice(index, 1)"
+          @@close="() => tags.splice(index, 1)"
           close
         />
         <p class="upload-finalize__hint">

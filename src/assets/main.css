@@ -20,6 +20,22 @@ a,
   transition: 0.4s;
 }
 
+/* upload component */
+.upload {
+  background: rgba(236, 236, 236, 0.1);
+  border-radius: 4px;
+  padding: 20px 40px 30px;
+  text-align: initial;
+}
+
+.upload__title {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 900;
+}
+.upload__description {
+  margin-bottom: 12px;
+}
 @media (hover: hover) {
   a:not(.no-hover):hover {
     background-color: hsla(160, 100%, 37%, 0.2);
